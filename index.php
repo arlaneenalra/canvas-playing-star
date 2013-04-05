@@ -4,7 +4,7 @@
         <script src="//code.jquery.com/jquery-1.9.1.min.js"></script>
         <style type="text/css">
             * { margin: 0; padding: 0; }
-            body { background-color:black; height: 100% ; width: 100%; overflow: none;}
+            body { background-color:black; height: 100% ; width: 100%; overflow: hidden;}
             canvas { height: 100%; width: 100%; }
         </style>
         <script src="js/star.js"></script>
