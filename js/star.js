@@ -5,13 +5,12 @@
  * Chris Salch
  */
 
-$(function () {
+$(function ready () {
     // return a function that converts between two ranges.
     var makeScale = function makeScale (range1, range2) {
         var factor = range1 / range2;
-        return function (x) {
+        return function scaleValue (x) {
             var converted = Math.abs(Math.floor(x * factor));
-            
             return converted > range1 ? 0 : range1 - converted;
         };
     };
@@ -22,11 +21,12 @@ $(function () {
     var makePixelSetter = function makePixelSetter(image) {
         return function pixelSetter (x, y, color) {
             var index = (y * image.width + x) * 4;
-            
-            image.data[index] = color.r;
-            image.data[index+1] = color.g;
-            image.data[index+2] = color.b;
-            image.data[index+3] = color.a;
+            var data = image.data;
+
+            data[index] = color.r;
+            data[index+1] = color.g;
+            data[index+2] = color.b;
+            data[index+3] = color.a;
         };
     };
 
@@ -64,7 +64,7 @@ $(function () {
     };
 
     // register a resize tracker on the window;
-    win.resize(function () {
+    win.resize(function resizeHandler () {
         
         canvas.attr('width', win.width());
         canvas.attr('height', win.height());
@@ -79,7 +79,7 @@ $(function () {
 
     win.trigger('resize');
 
-    win.mousemove(function (event) {
+    win.mousemove(function mouseMoveHandler (event) {
         mouseX = event.pageX;
         mouseY = event.pageY;
 
